@@ -81,11 +81,9 @@ let final = [];
       return 1;
     }
     else if(result.number == 1){
-      console.log('UPDATE')
       updateDataBase(JSONObject)
     }
     else if(result.number == 2){
-      console.log('INITILIAZE')
       postToDataBase(JSONObject);
   }
     else {
@@ -123,7 +121,7 @@ async function updateDataBase(arr){
 
     for (let i = 0; i < parsed.length; i++) {
     const currObj = JSON.parse(JSON.stringify(parsed[i]));
-    console.log(currObj.counter)
+    console.log(currObj)
     try {
       await axios.put(`http://localhost:3001/data/${currObj.item}`, {counter: currObj.counter})
     } catch (error) {
