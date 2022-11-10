@@ -1,4 +1,8 @@
+/* IMPORTANT: If you decide to use this script and especially the Routes on a publicly accessable Server make sure to PROTECT these Routes
+otherwise it is possible for people to POST or UPDATE things in your Database. For more Information https://dev.to/medaymentn/securing-your-node-js-api-with-json-web-token-5o5
+ */
 const express = require("express");
+const { findOneAndUpdate, db } = require("../models/dataModel");
 const router = express.Router();
 const DataModel = require("../models/dataModel");
 
@@ -25,17 +29,17 @@ router.post("/data", async (req, res) => {
 });
 
 router.put("/data/:id", async (req, res) => {
-  const data = await DataModel.findById(req.params.id);
-  if (!data) {
-    res.status(400);
-    console.log("Data not found");
+  
+  DataModel.findOneAndUpdate({item: `${req.params.id}`}, 
+  {counter: req.body.counter}, (error, data) => {
+    if(error){
+    console.log(error)
   }
-
-  const updateData = await DataModel.findByIdAndUpdate(
-    req.params.id,
-    req.body,
-    { new: true }
-  );
-  res.json(updateData);
+    else{
+      res.json(data);
+    }
+  }
+  )
+  
 });
 module.exports = router;
