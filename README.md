@@ -1,5 +1,5 @@
 ![worldometers-logo](https://user-images.githubusercontent.com/54753449/201200154-9697b314-ab73-46f4-91c9-d0dd800b2100.gif)
-# Public-WorldDataAPI 
+# Worldometer Webscraper
 
 
 
